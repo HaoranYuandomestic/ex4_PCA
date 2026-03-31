@@ -60,39 +60,19 @@
 \newcommand{\labplace}{数学实验中心}
 \newcommand{\experimenttitle}{PCA 算法消除噪声}
 \newcommand{\schoolyear}{2023--2024学年\quad 第二学期}
+\usepackage{fancyhdr}
+
+% 设置 fancyhdr 样式
+\fancypagestyle{plain}{
+	\fancyhf{} % 清除所有预设的页眉和页脚
+	\renewcommand{\headrulewidth}{0pt} % 如果不需要页眉线
+	\renewcommand{\footrulewidth}{0pt} % 如果不需要页脚线
+}
+
+% 应用新的 plain 样式到所有页面
+\pagestyle{plain}
 
 \begin{document}
-
-\begin{titlepage}
-	\centering
-	{\includegraphics[scale=1]{figure1.jpg}}
-
-	\vspace{1.8cm}
-
-	{\heiti\zihao{-1} 机器学习\par}
-
-	\vspace{2.2cm}
-
-	{\zihao{3} 实验报告\par}
-
-	\vspace{1.8cm}
-
-	{\zihao{4} \schoolyear\par}
-
-	\vspace{1.8cm}
-
-	\renewcommand{\arraystretch}{2.0}
-	\begin{tabular}{>{\raggedleft\arraybackslash}p{7cm} p{9cm}}
-		学\hspace{2em}院： & \schoolname \\
-		班\hspace{2em}级： & \classname \\
-		学\hspace{2em}号： & \studentid \\
-		姓\hspace{2em}名： & \studentname \\
-		指导教师： & \teachername \\
-		实验地点： & \labplace \\
-	\end{tabular}
-
-	\vfill
-\end{titlepage}
 
 \section*{实验四：PCA 算法消除噪声}
 
@@ -139,7 +119,7 @@ Z = XW_k
 \end{enumerate}
 
 \section*{四、核心代码}
-下面给出核心实现片段。完整代码包含数据生成、评估和可视化。
+下面给出核心实现片段。完整代码包含数据生成、评估和可视化。The code of this part is available at \footnote{https://github.com/HaoranYuandomestic/ex4\_PCA.git}
 
 \begin{lstlisting}
 class PCAFromScratch:
@@ -184,9 +164,7 @@ def main():
 \end{lstlisting}
 
 \section*{五、实验结果与分析}
-实验运行后，含噪数据经过 PCA 降维重建得到去噪结果。对比可以看到，去噪后样本分布整体更接近干净数据的主结构，离散噪声点明显减少。
-
-从指标上看：
+实验运行后，含噪数据经过 PCA 降维重建得到去噪结果。对比可以看到，去噪后样本分布整体更接近干净数据的主结构，离散噪声点明显减少。从指标上看：
 \begin{enumerate}
 	\item $\mathrm{MSE}(\text{clean},\text{denoised})$ 小于 $\mathrm{MSE}(\text{clean},\text{noisy})$，说明重建后的误差下降；
 	\item 各特征与干净数据的相关系数在去噪后普遍提升，说明有效信息保留更好；
@@ -195,7 +173,7 @@ def main():
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{data_compare.png}
+	\includegraphics[width=0.6\textwidth]{data_compare.png}
 	\caption{干净数据、含噪数据与 PCA 去噪后数据对比（F1-F2 平面）}
 \end{figure}
 
